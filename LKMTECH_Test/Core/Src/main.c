@@ -62,7 +62,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	if(htim->Instance == TIM1)
 	{
 		tim1_Watch++;
-		LKMTECH_motor_speed_control_mode1(1, 10000);
+		//LKMTECH_motor_speed_control_mode1(1, 10000);
+		LKMTECH_motor_torque_control_mode(1,100);
 	}
 }
 /* USER CODE END 0 */
