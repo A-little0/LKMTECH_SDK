@@ -332,8 +332,7 @@ void LKMTECH_motor_torque_control_mode(uint8_t id, int16_t iqControl)
   * @param[in]      id:设备CAN ID,设备id(1~32)
   * @param[in]      speedControl:[]
   * @retval         none
-  */
-void LKMTECH_motor_speed_control_mode1(uint8_t id, int32_t speedControl)
+  */void LKMTECH_motor_speed_control_mode1(uint8_t id, int32_t speedControl)
 {
   for(int i = 0; i<8; i++)
   {

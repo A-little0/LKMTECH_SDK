@@ -31,6 +31,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 int tim1_Watch = 0;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -57,13 +58,12 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
 	if(htim->Instance == TIM1)
 	{
 		tim1_Watch++;
-		//LKMTECH_motor_speed_control_mode1(1, 10000);
-		LKMTECH_motor_torque_control_mode(1,100);
 	}
 }
 /* USER CODE END 0 */
@@ -109,7 +109,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+//   LKMTECH_motor_multiposition_control_mode1(1,tim1_Watch);
+//     HAL_Delay(1000);
 
+//	  pos = 0;
+//	angle = 0;
+//	spin = 0;
+//	angleIncrement = 0;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
