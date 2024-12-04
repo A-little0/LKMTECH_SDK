@@ -1,0 +1,15 @@
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/queue.c
+lkmtech_test\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+lkmtech_test\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+lkmtech_test\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+lkmtech_test\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+lkmtech_test\queue.o: ../Core/Inc/FreeRTOSConfig.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+lkmtech_test\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h

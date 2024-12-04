@@ -9,11 +9,17 @@
                 "f:\\LKMTECH_SDK\\LKMTECH_Test\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
                 "f:\\LKMTECH_SDK\\LKMTECH_Test\\Drivers\\CMSIS\\Include",
                 "f:\\LKMTECH_SDK\\LKMTECH_Test\\Bsp",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Test",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Middlewares\\Third_Party\\FreeRTOS\\Source\\include",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Middlewares\\Third_Party\\FreeRTOS\\Source\\CMSIS_RTOS_V2",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Middlewares\\Third_Party\\FreeRTOS\\Source\\portable\\RVDS\\ARM_CM4F",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "f:\\LKMTECH_SDK\\LKMTECH_Test\\MDK-ARM",
                 "f:\\LKMTECH_SDK\\LKMTECH_Test\\Core\\Src",
-                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Drivers\\STM32F4xx_HAL_Driver\\Src"
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Drivers\\STM32F4xx_HAL_Driver\\Src",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Middlewares\\Third_Party\\FreeRTOS\\Source",
+                "f:\\LKMTECH_SDK\\LKMTECH_Test\\Middlewares\\Third_Party\\FreeRTOS\\Source\\portable\\MemMang"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

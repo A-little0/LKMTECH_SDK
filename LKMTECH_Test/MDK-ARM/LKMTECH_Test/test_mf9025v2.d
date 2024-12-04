@@ -1,6 +1,6 @@
 lkmtech_test\test_mf9025v2.o: ..\Test\test_MF9025V2.c
 lkmtech_test\test_mf9025v2.o: ..\Test\test_MF9025V2.h
-lkmtech_test\test_mf9025v2.o: ..\Bsp\bsp_LKMTECH.h
+lkmtech_test\test_mf9025v2.o: ../Bsp/bsp_LKMTECH.h
 lkmtech_test\test_mf9025v2.o: ../Core/Inc/main.h
 lkmtech_test\test_mf9025v2.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 lkmtech_test\test_mf9025v2.o: ../Core/Inc/stm32f4xx_hal_conf.h

@@ -66,16 +66,16 @@ void LKMTECH_motor_init(LKMTECH_DataHandleTypeDef *device, uint8_t id)
   */
 void LKMTECH_motor_canrx_communication(LKMTECH_DataHandleTypeDef *device, uint8_t* canrx_data)
 {
-//  if(device || canrx_data)
-//  {
-//    return;
-//  }
+ if(device == NULL || canrx_data == NULL)
+  {
+    return;
+  }
 
   if(canrx_data[0] == 0x9A)
   {
     device->baseData.temperature = canrx_data[1];
-    device->baseData.voltage = canrx_data[2] || canrx_data[3]<<8;
-    device->baseData.current = canrx_data[4] || canrx_data[5]<<8;
+    device->baseData.voltage = canrx_data[2] || (canrx_data[3]<<8);
+    device->baseData.current = canrx_data[4] || (canrx_data[5]<<8);
     device->motorState = canrx_data[6]; 
     device->errorState = canrx_data[7];
   }
@@ -252,10 +252,21 @@ void LKMTECH_motor_brake(uint8_t id, uint8_t brakeControl)
   }
 
   lkmtech_can_send_data[0] = LKMTECH_MOTOR_BRAKE_CMD;
-  if(brakeControl>=0 && brakeControl<=2)
+
+  switch(brakeControl)
   {
-    lkmtech_can_send_data[1] = brakeControl;
+    case 0x00: //±§Õ¢Æ÷¶Ïµç£¬É²³µÆô¶¯ 
+    case 0x01: //±§Õ¢Æ÷Í¨µç£¬É²³µÊÍ·Å
+    case 0x02: //¶ÁÈ¡±§Õ¢Æ÷×´Ì¬
+    {
+      lkmtech_can_send_data[1] = brakeControl;
+    }break;
+
+    default:{
+
+    }
   }
+
 
   LKMTECH_motor_cantx_communication(id, lkmtech_can_send_data);
 }
