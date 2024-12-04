@@ -66,10 +66,10 @@ void LKMTECH_motor_init(LKMTECH_DataHandleTypeDef *device, uint8_t id)
   */
 void LKMTECH_motor_canrx_communication(LKMTECH_DataHandleTypeDef *device, uint8_t* canrx_data)
 {
-  if(device || canrx_data)
-  {
-    return;
-  }
+//  if(device || canrx_data)
+//  {
+//    return;
+//  }
 
   if(canrx_data[0] == 0x9A)
   {
@@ -85,11 +85,11 @@ void LKMTECH_motor_canrx_communication(LKMTECH_DataHandleTypeDef *device, uint8_
     device->baseData.iB = canrx_data[4] || canrx_data[5]<<8;
     device->baseData.iC = canrx_data[6] || canrx_data[7]<<8;
   }
-  else{
+  else if(canrx_data[0] == 0x9C){
     device->baseData.temperature = canrx_data[1];
-    device->baseData.iq = canrx_data[2] || canrx_data[3]<<8;
-    device->baseData.speed = canrx_data[4] || canrx_data[5]<<8;
-    device->baseData.encoder = canrx_data[6] || canrx_data[7]<<8;
+    device->baseData.iq = canrx_data[2] || (canrx_data[3]<<8);
+    device->baseData.speed = canrx_data[4] || (canrx_data[5]<<8);
+    device->baseData.encoder = canrx_data[6] || (canrx_data[7]<<8);
   }
 }
 

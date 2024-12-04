@@ -25,7 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "bsp_can.h"
-#include "bsp_LKMTECH.h"
+#include "test_MF9025V2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,12 +58,22 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
 	if(htim->Instance == TIM1)
 	{
 		tim1_Watch++;
+		//MF9025V2_torque_test();
+		//MF9025V2_speed_test1();
+		//MF9025V2_speed_test2();
+		//MF9025V2_multiposition_test1();
+		//MF9025V2_multiposition_test2();
+		//MF9025V2_motor_singleposition_test1();
+		//MF9025V2_motor_singleposition_test2();
+		//LKMTECH_motor_incrementposition_test1();
+	    //LKMTECH_motor_incrementposition_test2();
+		MF9025V2_get_message_test();
+
 	}
 }
 /* USER CODE END 0 */
@@ -102,6 +112,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
   can_filter_init();
+  MF9025V2_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,13 +120,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-//   LKMTECH_motor_multiposition_control_mode1(1,tim1_Watch);
-//     HAL_Delay(1000);
 
-//	  pos = 0;
-//	angle = 0;
-//	spin = 0;
-//	angleIncrement = 0;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
