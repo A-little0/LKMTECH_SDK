@@ -42,3 +42,6 @@ lkmtech_test\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 lkmtech_test\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 lkmtech_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 lkmtech_test\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+lkmtech_test\freertos.o: ../Test/test_MF9025V2.h
+lkmtech_test\freertos.o: ../Bsp/bsp_LKMTECH.h
+lkmtech_test\freertos.o: ../Core/Inc/can.h

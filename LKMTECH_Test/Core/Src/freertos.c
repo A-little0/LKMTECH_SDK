@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "test_MF9025V2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +57,7 @@ const osThreadAttr_t defaultTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+void LKMTECH_TestTask(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -93,7 +93,7 @@ void MX_FREERTOS_Init(void) {
   /* Create the thread(s) */
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-  xTaskCreate(NULL,"lkmtech_motor_driver_task", 128, NULL, osPriorityNormal, &motorTaskHandle);
+  xTaskCreate(LKMTECH_TestTask,"lkmtech_motor_driver_task", 128, NULL, osPriorityNormal, &motorTaskHandle);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -117,7 +117,12 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_ONE);
+	vTaskDelay(1);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_TWO);
+	vTaskDelay(2);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_THREE);
+	vTaskDelay(1);	  
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -126,9 +131,14 @@ void StartDefaultTask(void *argument)
 /* USER CODE BEGIN Application */
 void LKMTECH_TestTask(void *argument)
 {
+  TickType_t xLastWakeTime;
+  const TickType_t xFrequency = 1;
+  
+  xLastWakeTime = xTaskGetTickCount();
   for(;;)
   {
-    vTaskDelayUntil
+	MF9025V2_torque_test();
+	vTaskDelayUntil(&xLastWakeTime, xFrequency);  
   }
 }
 /* USER CODE END Application */

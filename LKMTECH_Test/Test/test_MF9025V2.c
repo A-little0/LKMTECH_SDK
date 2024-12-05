@@ -77,9 +77,7 @@ void LKMTECH_motor_incrementposition_test2(void)
 
 void MF9025V2_get_message_test(void)
 {
-//	LKMTECH_read_motor_state(MF9025V2_motor.id, 0);
-//	LKMTECH_read_motor_state(MF9025V2_motor.id, 1);
-	LKMTECH_read_motor_state(MF9025V2_motor.id, 1);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_TWO);
 }
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
