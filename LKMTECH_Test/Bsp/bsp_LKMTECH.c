@@ -66,30 +66,30 @@ void LKMTECH_motor_init(LKMTECH_DataHandleTypeDef *device, uint8_t id)
   */
 void LKMTECH_motor_canrx_communication(LKMTECH_DataHandleTypeDef *device, uint8_t* canrx_data)
 {
-//  if(device || canrx_data)
-//  {
-//    return;
-//  }
+  if(device == NULL || canrx_data ==NULL)
+  {
+    return;
+  }
 
   if(canrx_data[0] == 0x9A)
   {
     device->baseData.temperature = canrx_data[1];
-    device->baseData.voltage = canrx_data[2] || canrx_data[3]<<8;
-    device->baseData.current = canrx_data[4] || canrx_data[5]<<8;
+    device->baseData.voltage = (canrx_data[2] | (canrx_data[3]<<8))*0.01;
+    device->baseData.current = (canrx_data[4] | (canrx_data[5]<<8))*0.01;
     device->motorState = canrx_data[6]; 
     device->errorState = canrx_data[7];
   }
   else if(canrx_data[0] == 0x9D){
     device->baseData.temperature = canrx_data[1];
-    device->baseData.iA = canrx_data[2] || canrx_data[3]<<8;
-    device->baseData.iB = canrx_data[4] || canrx_data[5]<<8;
-    device->baseData.iC = canrx_data[6] || canrx_data[7]<<8;
+    device->baseData.iA = canrx_data[2] | (canrx_data[3]<<8);
+    device->baseData.iB = canrx_data[4] | (canrx_data[5]<<8);
+    device->baseData.iC = canrx_data[6] | (canrx_data[7]<<8);
   }
-  else if(canrx_data[0] == 0x9C){
+  else {
     device->baseData.temperature = canrx_data[1];
-    device->baseData.iq = canrx_data[2] || (canrx_data[3]<<8);
-    device->baseData.speed = canrx_data[4] || (canrx_data[5]<<8);
-    device->baseData.encoder = canrx_data[6] || (canrx_data[7]<<8);
+    device->baseData.iq = canrx_data[2] | (canrx_data[3]<<8);
+    device->baseData.speed = canrx_data[4] | (canrx_data[5]<<8);
+    device->baseData.encoder = canrx_data[6] | (canrx_data[7]<<8);
   }
 }
 
@@ -129,17 +129,17 @@ void LKMTECH_read_motor_state(uint8_t id, uint8_t state_type)
     lkmtech_can_send_data[i] = 0;
   }
 
-  if(state_type == 0)
+  if(state_type == LKMTECH_MOTOR_STATE_ONE)
   {
     /*该命令读取当前电机的温度、电压和错误状态标志*/
     lkmtech_can_send_data[0] = LKMTECH_READ_MOTOR_STATE1_CMD;
   }
-  else if(state_type == 1)
+  else if(state_type == LKMTECH_MOTOR_STATE_TWO)
   {
     /*该命令读取当前电机的温度、电机转矩电流（MF、MG）/电机输出功率（MS）、转速、编码器位*/
     lkmtech_can_send_data[0] = LKMTECH_READ_MOTOR_STATE2_CMD;
   }
-  else
+  else//LKMTECH_MOTOR_STATE_THREE
   {
     /*由于MS电机没有相电流采样，该命令在MS电机上无作用。
     该命令读取当前电机的温度和3相电流数据 */ 
@@ -252,11 +252,22 @@ void LKMTECH_motor_brake(uint8_t id, uint8_t brakeControl)
   }
 
   lkmtech_can_send_data[0] = LKMTECH_MOTOR_BRAKE_CMD;
-  if(brakeControl>=0 && brakeControl<=2)
+  
+  switch(brakeControl)
   {
-    lkmtech_can_send_data[1] = brakeControl;
+	  case 0x00:
+	  case 0x01:
+	  case 0x02:
+	  {
+		lkmtech_can_send_data[1] = brakeControl;
+	  }break;
+	  
+	  default:
+	  {
+		
+	  }
   }
-
+  
   LKMTECH_motor_cantx_communication(id, lkmtech_can_send_data);
 }
 

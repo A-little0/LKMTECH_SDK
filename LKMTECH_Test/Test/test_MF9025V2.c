@@ -75,13 +75,18 @@ void LKMTECH_motor_incrementposition_test2(void)
 	LKMTECH_motor_incrementposition_control_mode2(MF9025V2_motor.id, t_iangle, t_speed);
 }
 
+/*success*/
+//1ms定时器，连续调用LKMTECH_read_motor_state函数一次获取电机3个状态数据，第一次和第三次可以被成果处理，第二次失败
+//两条指令之间要设计一段最小发送时间间隔？
 void MF9025V2_get_message_test(void)
 {
-//	LKMTECH_read_motor_state(MF9025V2_motor.id, 0);
-//	LKMTECH_read_motor_state(MF9025V2_motor.id, 1);
-	LKMTECH_read_motor_state(MF9025V2_motor.id, 1);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_ONE);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_TWO);
+	LKMTECH_read_motor_state(MF9025V2_motor.id, LKMTECH_MOTOR_STATE_THREE);
 }
 
+/*success*/
+//母线电流值一直为零，上位机也是同一结果
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
     CAN_RxHeaderTypeDef rx_header;

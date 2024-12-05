@@ -63,6 +63,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	if(htim->Instance == TIM1)
 	{
 		tim1_Watch++;
+		
 		//MF9025V2_torque_test();
 		//MF9025V2_speed_test1();
 		//MF9025V2_speed_test2();
@@ -73,6 +74,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 		//LKMTECH_motor_incrementposition_test1();
 	    //LKMTECH_motor_incrementposition_test2();
 		MF9025V2_get_message_test();
+		
 
 	}
 }
